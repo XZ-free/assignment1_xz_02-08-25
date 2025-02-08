@@ -1,6 +1,6 @@
-// Assignment 1 - skeleton code
-
+// Assignment 1 - completed
 // Program to calculate transition energy using simple Bohr formula
+// Intake the integer number from user, ask which unit user would like to have in result, and finally ask user if want to restart.
 
 #include <iostream>
 #include <iomanip>
@@ -10,15 +10,15 @@
 
 
 // take input and check if it is in integer. if not so ask user to redo the input.
-int input_integer(int type) {
+int input_integer(int type) { //declare an array of intaking mission for further repeated use.
     std::vector<std::string> array = {
         "atomic number Z",
         "principle quantum number n_i",
         "principle quantum number n_j"
     };
 
+//declare, intake and check validity of the integer input
     int int_input;
-    
     while (true) {
         std::cout<<"Please enter the "<<array[type] << ": ";
         std::cin>>int_input;
@@ -51,8 +51,40 @@ int main()
         int n_i = input_integer(1);
         int n_j = input_integer(2);
 
+        //ask user if want unit in jouls(J) or in eV
+        std::string unit_input; //declare the unit string
+        while(true) {
+            std::vector<std::string> arr = {
+                "e  for electron volt (eV)",
+                "j  for jouls (J)"
+            };
+            std::cout << "Please enter"<< std::endl;
+            std::cout << arr[0] << std::endl;
+            std::cout << arr[1] << std::endl;
+            std::cout << "to select the unit of result "<< std::endl;
+            std::cin >> unit_input;
+            if (unit_input == "e" || unit_input == "j"){
+                break;
+            }
+            if (unit_input == "E"){
+                unit_input = "e";
+                break;
+            }
+            if (unit_input == "J"){
+                unit_input = "j";
+                break;
+            }
+            std::cout<< "Please enter proper letter to select the unit." << std::endl;
+            continue; 
+        }
+
         // calculate the proper answer and compute photon energy, Delta E = 13.6*(Z^2)*(1/n_j^2 - 1/n_i^2) eV
         double energy = 13.6 * (Z * Z) * (1.0 / (n_j * n_j) - 1.0 / (n_i * n_i));
+        if (unit_input == "j"){
+            energy *= 1.6022e-19;
+        }
+
+
         std::cout<<"Here is my answer: "<<energy << std::endl;
 
         // Ask user if they want to continue
