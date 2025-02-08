@@ -12,8 +12,8 @@
 // take input and check if it is in integer. if not so ask user to redo the input.
 int input_integer(int type) { //declare an array of intaking mission for further repeated use.
     std::vector<std::string> array = {
-        "atomic number Z",
-        "principle quantum number n_i",
+        "atomic number Z", 
+        "principle quantum number n_i", 
         "principle quantum number n_j"
     };
 
@@ -56,22 +56,19 @@ int main()
         while(true) {
             std::vector<std::string> arr = {
                 "e  for electron volt (eV)",
-                "j  for jouls (J)"
+                "J  for jouls (J)"
             };
             std::cout << "Please enter"<< std::endl;
             std::cout << arr[0] << std::endl;
             std::cout << arr[1] << std::endl;
             std::cout << "to select the unit of result "<< std::endl;
             std::cin >> unit_input;
-            if (unit_input == "e" || unit_input == "j"){
+            if (unit_input == "E" || unit_input == "e"){
+                unit_input = "eV";
                 break;
             }
-            if (unit_input == "E"){
-                unit_input = "e";
-                break;
-            }
-            if (unit_input == "J"){
-                unit_input = "j";
+            if (unit_input == "J" || unit_input == "j"){
+                unit_input = "J";
                 break;
             }
             std::cout<< "Please enter proper letter to select the unit." << std::endl;
@@ -84,8 +81,7 @@ int main()
             energy *= 1.6022e-19;
         }
 
-
-        std::cout<<"Here is my answer: "<<energy << std::endl;
+        std::cout<<"Here is my answer: "<<energy <<" "<<unit_input<<std::endl;
 
         // Ask user if they want to continue
         std::string if_repeat;
