@@ -77,7 +77,7 @@ int main()
 
         // calculate the proper answer and compute photon energy, Delta E = 13.6*(Z^2)*(1/n_j^2 - 1/n_i^2) eV
         double energy = 13.6 * (Z * Z) * (1.0 / (n_j * n_j) - 1.0 / (n_i * n_i));
-        if (unit_input == "j"){
+        if (unit_input == "J"){
             energy *= 1.6022e-19;
         }
 
